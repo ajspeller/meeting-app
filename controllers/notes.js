@@ -17,3 +17,32 @@ exports.allUsersNotes = (req, res, next) => {
       }
     });
 };
+
+exports.createNote = (req, res, next) => {
+  const {
+    memberName,
+    project,
+    workYesterday,
+    workToday,
+    impediment,
+  } = req.body;
+  const newNote = new Note({
+    memberName,
+    project,
+    workYesterday,
+    workToday,
+    impediment,
+  });
+  newNote.save((err) => {
+    if (err) {
+      const errMsg = `Sorry, error saving, ${err}`;
+      res.render('newnote', {
+        title: `Note - new note (error)`,
+        message: errMsg,
+      });
+    } else {
+      console.log('Meeting note saved');
+      res.redirect(301, '/');
+    }
+  });
+};
