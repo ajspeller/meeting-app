@@ -46,3 +46,24 @@ exports.createNote = (req, res, next) => {
     }
   });
 };
+
+// filter by name
+exports.noteByMember = (req, res, next) => {
+  const { memberName } = req.body;
+  const query = Note.find({});
+  const filter = memberName;
+  if (!filter.length) {
+    console.log('not notes found');
+  } else {
+    query
+      .where({
+        memberName: filter,
+      })
+      .sort({ createdOn: 'desc' })
+      .exec((err, results) => {
+        res.render('index', {
+          notes: results,
+        });
+      });
+  }
+};

@@ -4,6 +4,7 @@ const notesController = require('../controllers/notes');
 const asyncController = require('../controllers/async');
 
 router.get('/', asyncController.homepage);
+router.post('/', notesController.noteByMember);
 
 router.get('/newnote', notesController.allUsersNotes);
 router.post('/newnote', notesController.createNote);
