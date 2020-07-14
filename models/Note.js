@@ -14,13 +14,17 @@ const NoteSchema = new Schema({
     default: Date.now,
   },
   workYesterday: {
-    type: Boolean,
+    type: String,
+    required: true,
   },
   workToday: {
-    type: Boolean,
+    type: String,
+    required: true,
   },
   impediment: {
     type: String,
+    required: true,
+    default: 'none',
   },
 });
 
