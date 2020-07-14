@@ -9,6 +9,19 @@ const NoteSchema = new Schema({
     type: String,
     required: true,
   },
+  createdOn: {
+    type: Date,
+    default: Date.now,
+  },
+  workYesterday: {
+    type: Boolean,
+  },
+  workToday: {
+    type: Boolean,
+  },
+  impediment: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model('Note', NoteSchema, 'notes');
